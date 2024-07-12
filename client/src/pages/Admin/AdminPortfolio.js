@@ -8,7 +8,7 @@ export default function AdminPortfolio() {
         <AdminNav/>
       </div>
       <div className='w-screen'>
-        <h1>hi</h1>
+        <h1>hii</h1>
       </div>
     </div>
   )
