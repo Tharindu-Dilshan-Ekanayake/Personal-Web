@@ -7,6 +7,7 @@ import Projects from './pages/Projects';
 import Vlogs from './pages/Vlogs';
 import Blogs from './pages/Blogs';
 import Skills from './pages/Skills';
+import Adminlogin from './pages/Admin/Adminlogin';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path='/vlogs' element={<Vlogs/>} />  
           <Route path='/blogs' element={<Blogs/>} />  
           <Route path='/skills' element={<Skills/>} />   
+
+          <Route path='/adminlogin' element={<Adminlogin/>}/>
         </Routes>
       </div>
     </BrowserRouter>
