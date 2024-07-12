@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
 
 dotenv.config(); // Load environment variables
 
@@ -13,8 +14,9 @@ mongoose
     .catch((err) => console.log('Database not connected', err));
 
 app.use(express.json());
+app.use(cookieParser());
 
-//routersetup
+//router setup
 app.use('/', require('./routes/adminLoginRoutes'));
 
 app.listen(port, () => {

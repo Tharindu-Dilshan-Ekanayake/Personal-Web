@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
-const { createadmin } = require('../controllers/adminLoginController')
+const { createAdmin, loginAdmin } = require('../controllers/adminLoginController');
 
 router.use(
     cors({
@@ -10,6 +10,7 @@ router.use(
     })
 );
 
-router.post('/register',createadmin);
+router.post('/register', createAdmin);
+router.post('/login', loginAdmin);
 
 module.exports = router;
