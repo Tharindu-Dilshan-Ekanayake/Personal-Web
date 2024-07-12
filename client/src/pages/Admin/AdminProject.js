@@ -3,7 +3,7 @@ import AdminNav from '../../component/AdminCompo/AdminNav'
 
 export default function AdminProject() {
   return (
-    <div>
+    <div className='flex'>
       <div className=''>
         <AdminNav/>
       </div>

@@ -4,11 +4,14 @@ import { Link, useLocation,  } from 'react-router-dom';
 import { MdDashboard } from 'react-icons/md';
 import { IoPersonAddSharp } from 'react-icons/io5';
 
-import { FaUserEdit } from 'react-icons/fa';
 
 
-import { DiAptana } from 'react-icons/di';
-import { SiPrivateinternetaccess } from 'react-icons/si';
+
+import { CiTextAlignJustify } from "react-icons/ci";
+import { FaVideo } from "react-icons/fa6";
+import { GiSkills } from "react-icons/gi";
+import { FaNetworkWired } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
 
 export default function AdminNav() {
     const [activeItem, setActiveItem] = useState(null);
@@ -87,7 +90,7 @@ export default function AdminNav() {
                         <Link to='/adminprojects' className='no-underline'>
                             <li>
                                 <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 5 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
-                                    <div className='mr-8'><FaUserEdit size={20} className="opacity-25 sm:w-6 sm:h-6" /></div>
+                                    <div className='mr-8'><FaNetworkWired size={20} className="opacity-25 sm:w-6 sm:h-6" /></div>
                                     <div><label className='text-white opacity-25' style={{ fontSize: '18px' }}>Projects Section</label></div>
                                 </div>
                             </li>
@@ -96,7 +99,7 @@ export default function AdminNav() {
                         <Link to='/adminvlog' className='no-underline'>
                             <li>
                                 <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 3 ?'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
-                                    <div className='mr-8'><SiPrivateinternetaccess size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
+                                    <div className='mr-8'><FaVideo size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
                                     <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Vlogs Section</label></div>
                                 </div>
                             </li>
@@ -104,7 +107,7 @@ export default function AdminNav() {
                         <Link to='/adminblog' className='no-underline'>
                             <li>
                                 <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 4 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
-                                    <div className='mr-8'><DiAptana size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
+                                    <div className='mr-8'><CiTextAlignJustify size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
                                     <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Blogs Section</label></div>
                                 </div>
                             </li>
@@ -112,7 +115,7 @@ export default function AdminNav() {
                         <Link to='/adminskills' className='no-underline'>
                             <li>
                                 <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 7 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
-                                    <div className='mr-8'><DiAptana size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
+                                    <div className='mr-8'><GiSkills size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
                                     <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Skills Section</label></div>
                                 </div>
                             </li>
@@ -120,7 +123,7 @@ export default function AdminNav() {
                         <Link to='/adminhire' className='no-underline'>
                             <li>
                                 <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 6 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
-                                    <div className='mr-8'><DiAptana size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
+                                    <div className='mr-8'><FaMessage size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
                                     <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Hire Messages</label></div>
                                 </div>
                             </li>
