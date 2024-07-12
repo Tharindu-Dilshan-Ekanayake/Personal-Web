@@ -23,18 +23,24 @@ export default function AdminNav() {
             case '/admindash':
                 setActiveItem(1);
                 break;
-            case '/admincreateuser':
+            case '/adminportfolio':
                 setActiveItem(2);
                 break;
-            case '/adminmodifyuser':
+            case '/adminvlog':
                 setActiveItem(3);
                 break;
            
-            case '/adminaccesscontrol':
+            case '/adminblog':
                 setActiveItem(4);
                 break;
-            case '/adminsystemsettings':
+            case '/adminprojects':
                 setActiveItem(5);
+                break;
+            case '/adminhire':
+                setActiveItem(6);
+                break;
+            case '/adminskills':
+                setActiveItem(7);
                 break;
             default:
                 setActiveItem(null);
@@ -69,37 +75,53 @@ export default function AdminNav() {
                             </li>
                         </Link>
                         
-                        <Link to='/admincreateuser' className='no-underline'>
+                        <Link to='/adminportfolio' className='no-underline'>
                             <li>
                                 <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 2 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
                                     <div className='mr-8'><IoPersonAddSharp size={20} className="opacity-25 sm:w-6 sm:h-6" /></div>
-                                    <div><label className='text-white opacity-25' style={{ fontSize: '18px' }}>Create User Account</label></div>
+                                    <div><label className='text-white opacity-25' style={{ fontSize: '18px' }}>Update Portfolio</label></div>
                                 </div>
                             </li>
                         </Link>
                      
-                        <Link to='/adminmodifyuser' className='no-underline'>
+                        <Link to='/adminprojects' className='no-underline'>
                             <li>
-                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 3 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
+                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 5 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
                                     <div className='mr-8'><FaUserEdit size={20} className="opacity-25 sm:w-6 sm:h-6" /></div>
-                                    <div><label className='text-white opacity-25' style={{ fontSize: '18px' }}>Modify User Account</label></div>
+                                    <div><label className='text-white opacity-25' style={{ fontSize: '18px' }}>Projects Section</label></div>
                                 </div>
                             </li>
                         </Link>
                         
-                        <Link to='/adminaccesscontrol' className='no-underline'>
+                        <Link to='/adminvlog' className='no-underline'>
                             <li>
-                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 4 ?'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
+                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 3 ?'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
                                     <div className='mr-8'><SiPrivateinternetaccess size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
-                                    <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Access Control</label></div>
+                                    <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Vlogs Section</label></div>
                                 </div>
                             </li>
                         </Link>
-                        <Link to='/adminsystemsettings' className='no-underline'>
+                        <Link to='/adminblog' className='no-underline'>
                             <li>
-                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 5 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
+                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 4 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
                                     <div className='mr-8'><DiAptana size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
-                                    <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>System Settings</label></div>
+                                    <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Blogs Section</label></div>
+                                </div>
+                            </li>
+                        </Link>
+                        <Link to='/adminskills' className='no-underline'>
+                            <li>
+                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 7 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
+                                    <div className='mr-8'><DiAptana size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
+                                    <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Skills Section</label></div>
+                                </div>
+                            </li>
+                        </Link>
+                        <Link to='/adminhire' className='no-underline'>
+                            <li>
+                                <div className={`flex items-center py-3 pl-8 hover:bg-gray-100 hover:bg-opacity-10 ${activeItem === 6 ? 'bg-[#BABABA] bg-opacity-20 text-white' : 'text-gray-100 hover:bg-gray-300 hover:text-white'}`}>
+                                    <div className='mr-8'><DiAptana size={20} className="opacity-25 sm:w-6 sm:h-6 hover:text-white" /></div>
+                                    <div><label className='text-white opacity-25 hover:text-white' style={{ fontSize: '18px' }}>Hire Messages</label></div>
                                 </div>
                             </li>
                         </Link>
