@@ -5,7 +5,7 @@ const vlogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Title:{
+    title:{
         type: String,
         required: true
     },
@@ -25,6 +25,6 @@ const vlogSchema = new mongoose.Schema({
         type: String,
         
     }
-})
+}, {timestamps: true})
 const Vlogs = mongoose.model('Vlogs', vlogSchema);
 module.exports = Vlogs;

@@ -1,5 +1,6 @@
 import React from 'react'
 import AdminNav from '../../component/AdminCompo/AdminNav'
+import Vlogscompo from '../../component/AdminCompo/Vlogscompo'
 
 export default function AdminVlog() {
   return (
@@ -8,7 +9,7 @@ export default function AdminVlog() {
         <AdminNav/>
       </div>
       <div className='w-screen'>
-        <h1>hi</h1>
+        <Vlogscompo/>
       </div>
     </div>
   )
