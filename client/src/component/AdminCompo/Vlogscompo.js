@@ -99,7 +99,7 @@ export default function Vlogscompo() {
             value={formData.category}
             onChange={handleInputChange}
             required
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           >
             <option value="">Select a category</option>
             {categories.map((category) => (
@@ -116,7 +116,7 @@ export default function Vlogscompo() {
             value={formData.title}
             onChange={handleInputChange}
             required
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -128,7 +128,7 @@ export default function Vlogscompo() {
             value={formData.subject}
             onChange={handleInputChange}
             required
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -138,7 +138,7 @@ export default function Vlogscompo() {
             name="description"
             value={formData.description}
             onChange={handleInputChange}
-            className="block w-full h-32 mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="block w-full h-32 mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -150,7 +150,7 @@ export default function Vlogscompo() {
             value={formData.link}
             onChange={handleInputChange}
             required
-            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
         <div>
@@ -161,7 +161,7 @@ export default function Vlogscompo() {
             name="cover_image"
             onChange={handleImageUpload}
             accept="image/*"
-            className="block w-full mt-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-blue-700 hover:file:bg-gray-100"
+            className="block w-full mt-1 text-sm text-gray-500 border file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-blue-700 hover:file:bg-gray-100"
           />
         </div>
         {formData.cover_image && (
