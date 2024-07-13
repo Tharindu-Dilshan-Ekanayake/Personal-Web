@@ -9,7 +9,10 @@ export default function AdminVlog() {
         <AdminNav/>
       </div>
       <div className='w-screen'>
-        <Vlogscompo/>
+        <div className='pt-12'>
+          <Vlogscompo/>
+        </div>
+        
       </div>
     </div>
   )
