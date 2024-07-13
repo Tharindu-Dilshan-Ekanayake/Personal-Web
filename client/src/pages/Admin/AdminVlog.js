@@ -5,10 +5,10 @@ import Vlogscompo from '../../component/AdminCompo/Vlogscompo'
 export default function AdminVlog() {
   return (
     <div className='flex h-screen'>
-      <div className='fixed h-full'>
+      <div className='h-full '>
         <AdminNav/>
       </div>
-      <div className='flex-1 ml-[your-navbar-width] overflow-hidden'>
+      <div className='flex-1 w-screen'>
         <div className='h-full px-6 pt-12 overflow-y-auto'>
           <Vlogscompo/>
         </div>
