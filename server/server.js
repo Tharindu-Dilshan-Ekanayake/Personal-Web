@@ -27,6 +27,7 @@ app.use(cookieParser());
 // Routes
 app.use('/', require('./routes/adminLoginRoutes'));
 app.use('/vlog', require('./routes/vlogsRoutes'));
+app.use('/blog',require('./routes/blogsRoutes'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
