@@ -16,7 +16,7 @@ export default function ProjectCompo() {
   });
   const [editingId, setEditingId] = useState(null);
 
-  const categories = ['Web Development', 'Mobile App', 'UI/UX Design', 'Machine Learning']; // Add more categories as needed
+  const categories = ['Web Development', 'Mobile App', 'UI/UX Design', 'Graphic Design', '3D animation']; // Add more categories as needed
 
   useEffect(() => {
     fetchProjects();
