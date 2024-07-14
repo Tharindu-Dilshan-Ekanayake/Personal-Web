@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
 
-const projectSchema = new mongoose.Schema({
+const linkSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    url: {
+        type: String,
+        required: true
+    }
+});
 
+const projectSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true
@@ -18,14 +28,19 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    link:[ {
-        type: String,
-        required: true
-    }],
+    links: [linkSchema],
     images: [{
         type: String, // Storing base64
         required: true
-    }]
+    }],
+    start_date: {
+        type: Date,
+    },
+    end_date: {
+        type: Date,
+    }
 }, { timestamps: true });
-const Projects = mongoose.model('Projects',projectSchema);
+
+const Projects = mongoose.model('Projects', projectSchema);
+
 module.exports = Projects;
