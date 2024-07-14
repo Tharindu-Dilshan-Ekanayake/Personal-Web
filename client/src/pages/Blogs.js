@@ -1,5 +1,7 @@
 import React from 'react'
 import NavBar from '../component/NavBar'
+import BlogCompo from '../component/BlogCompo'
+
 
 export default function Blogs() {
   return (
@@ -7,7 +9,9 @@ export default function Blogs() {
         <div>
             <NavBar/>
         </div>
-      <h1>Blogs</h1>
+      <div>
+        <BlogCompo/>
+      </div>
     </div>
   )
 }
