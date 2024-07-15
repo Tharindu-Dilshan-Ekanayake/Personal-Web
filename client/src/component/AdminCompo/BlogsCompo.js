@@ -156,19 +156,19 @@ export default function BlogsCompo() {
           />
         </div>
         <div>
-      <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-        Description:
-      </label>
-      <ReactQuill
-        id="description"
-        value={formData.description}
-        onChange={handleDescriptionChange}
-        modules={modules}
-        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-        style={{ height: '200px' }}
-      />
-    </div>
-        <div>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+            Description:
+          </label>
+          <ReactQuill
+            id="description"
+            value={formData.description}
+            onChange={handleDescriptionChange}
+            modules={modules}
+            className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            style={{ height: '200px' }}
+          />
+        </div>
+        <div className='pt-12'>
           <label htmlFor="link" className="block text-sm font-medium text-gray-700">Link:</label>
           <input
             type="text"

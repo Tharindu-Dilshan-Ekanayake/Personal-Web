@@ -12,11 +12,25 @@ export default function ProjectCompo() {
     links: [],
     images: [],
     start_date: '',
+    ongoing: false,
     end_date: ''
   });
   const [editingId, setEditingId] = useState(null);
 
-  const categories = ['Web Development', 'Mobile App', 'UI/UX Design', 'Graphic Design', '3D animation']; // Add more categories as needed
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === 'checkbox') {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: checked,
+        end_date: checked ? null : prevState.end_date
+      }));
+    } else {
+      setFormData(prevState => ({ ...prevState, [name]: value }));
+    }
+  };
+
+  const categories = ['Web Development', 'Mobile App', 'UI/UX Design', 'Graphic Design', '3D animation'];
 
   useEffect(() => {
     fetchProjects();
@@ -30,10 +44,6 @@ export default function ProjectCompo() {
       console.error('Error fetching projects:', error);
       toast.error('Failed to fetch projects');
     }
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleLinkChange = (index, field, value) => {
@@ -80,14 +90,28 @@ export default function ProjectCompo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const dataToSubmit = {
+        ...formData,
+        end_date: formData.ongoing ? null : formData.end_date
+      };
       if (editingId) {
-        await axios.put(`/projects/projects/${editingId}`, formData);
+        await axios.put(`/projects/projects/${editingId}`, dataToSubmit);
         toast.success('Project updated successfully');
       } else {
-        await axios.post('/projects/projects', formData);
+        await axios.post('/projects/projects', dataToSubmit);
         toast.success('Project created successfully');
       }
-      setFormData({ category: '', title: '', subject: '', description: '', links: [], images: [], start_date: '', end_date: '' });
+      setFormData({
+        category: '',
+        title: '',
+        subject: '',
+        description: '',
+        links: [],
+        images: [],
+        start_date: '',
+        ongoing: false,
+        end_date: ''
+      });
       setEditingId(null);
       fetchProjects();
     } catch (error) {
@@ -97,7 +121,10 @@ export default function ProjectCompo() {
   };
 
   const handleEdit = (project) => {
-    setFormData(project);
+    setFormData({
+      ...project,
+      ongoing: project.end_date === null
+    });
     setEditingId(project._id);
   };
 
@@ -226,17 +253,30 @@ export default function ProjectCompo() {
             className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           />
         </div>
-        <div>
-          <label htmlFor="end_date" className="block text-sm font-medium text-gray-700">End Date:</label>
+        <div className="flex items-center">
           <input
-            type="date"
-            id="end_date"
-            name="end_date"
-            value={formData.end_date}
+            type="checkbox"
+            id="ongoing"
+            name="ongoing"
+            checked={formData.ongoing}
             onChange={handleInputChange}
-            className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           />
+          <label htmlFor="ongoing" className="ml-2 text-sm font-medium text-gray-700">Ongoing</label>
         </div>
+        {!formData.ongoing && (
+          <div>
+            <label htmlFor="end_date" className="block text-sm font-medium text-gray-700">End Date:</label>
+            <input
+              type="date"
+              id="end_date"
+              name="end_date"
+              value={formData.end_date || ''}
+              onChange={handleInputChange}
+              className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            />
+          </div>
+        )}
         <button 
           type="submit" 
           className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -264,7 +304,11 @@ export default function ProjectCompo() {
               ))}
             </div>
             <p className="mb-1 text-sm text-gray-500">Start Date: {new Date(project.start_date).toLocaleDateString()}</p>
-            <p className="mb-2 text-sm text-gray-500">End Date: {new Date(project.end_date).toLocaleDateString()}</p>
+            <p className="mb-2 text-sm text-gray-500">
+              {project.end_date 
+                ? `End Date: ${new Date(project.end_date).toLocaleDateString()}`
+                : 'Ongoing'}
+            </p>
             <div className="flex space-x-2">
               <button
                 onClick={() => handleEdit(project)}
