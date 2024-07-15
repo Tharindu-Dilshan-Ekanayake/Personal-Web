@@ -36,6 +36,10 @@ const projectSchema = new mongoose.Schema({
     start_date: {
         type: Date,
     },
+    ongoing:{
+        type:Boolean,
+        default: false
+    },
     end_date: {
         type: Date,
     }
