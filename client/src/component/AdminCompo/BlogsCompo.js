@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function BlogsCompo() {
   const [blogs, setBlogs] = useState([]);
@@ -95,6 +97,20 @@ export default function BlogsCompo() {
     }
   };
 
+  const handleDescriptionChange = (content) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      description: content,
+    }));
+  };
+
+  const modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    ],
+  };
+
   return (
     <div className="max-w-4xl p-6 mx-auto bg-gray-100 rounded-lg shadow-lg">
       <h1 className="mb-6 text-3xl font-bold text-center text-blue-600">Blog Management</h1>
@@ -140,15 +156,18 @@ export default function BlogsCompo() {
           />
         </div>
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            className="block w-full h-32 mt-1 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          />
-        </div>
+      <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+        Description:
+      </label>
+      <ReactQuill
+        id="description"
+        value={formData.description}
+        onChange={handleDescriptionChange}
+        modules={modules}
+        className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        style={{ height: '200px' }}
+      />
+    </div>
         <div>
           <label htmlFor="link" className="block text-sm font-medium text-gray-700">Link:</label>
           <input
