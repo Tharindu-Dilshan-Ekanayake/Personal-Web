@@ -3,6 +3,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import DOMPurify from 'dompurify';
 
 export default function BlogsCompo() {
   const [blogs, setBlogs] = useState([]);
@@ -16,7 +17,7 @@ export default function BlogsCompo() {
   });
   const [editingId, setEditingId] = useState(null);
 
-  const categories = ['Technology', 'Lifestyle', 'Travel', 'Food']; // Add more categories as needed
+  const categories = ['Technology', 'Lifestyle', 'Travel', 'Food'];
 
   useEffect(() => {
     fetchBlogs();
@@ -106,9 +107,19 @@ export default function BlogsCompo() {
 
   const modules = {
     toolbar: [
-      ['bold', 'italic', 'underline'],
+      [{ 'header': '1'}, { 'header': '2'}, { 'font': [] }],
       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      ['link', 'image', 'video'],
+      ['clean']
     ],
+  };
+
+  const createMarkup = (html) => {
+    return { __html: DOMPurify.sanitize(html) };
   };
 
   return (
@@ -226,7 +237,11 @@ export default function BlogsCompo() {
                 <img key={index} src={image} alt={`blog-${index}`} className="object-cover w-20 h-20 m-1 rounded" />
               ))}
             </div>
-            <div className="flex space-x-2">
+            <div className="mb-2" dangerouslySetInnerHTML={createMarkup(blog.description)} />
+            <a href={blog.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              Read more
+            </a>
+            <div className="flex mt-2 space-x-2">
               <button
                 onClick={() => handleEdit(blog)}
                 className="px-3 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600"
