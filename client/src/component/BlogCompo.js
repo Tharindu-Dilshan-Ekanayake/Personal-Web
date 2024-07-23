@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
 import { IoClose } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
+import BGBLOG from '../images/BGBLOG.jpg';
 
 export default function BlogCompo() {
   const [blogs, setBlogs] = useState([]);
@@ -104,14 +105,14 @@ export default function BlogCompo() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative p-6 mx-4 overflow-y-auto bg-white rounded-lg shadow-xl w-[1300px] max-h-[90vh]"
+              className="relative p-6 mx-4 overflow-y-auto bg-white rounded-lg shadow-xl w-[1300px] max-h-[90vh] bg-cover bg-center"
+              style={{ backgroundImage: `url(${BGBLOG})`, opacity:12 }}
             >
               <div className='flex justify-center'>
-                <div className='flex px-12 mx-12 border-b'>
+                <div className='flex px-12 mx-12 '>
                   <h2 className="mb-4 text-3xl font-bold text-[#19191A]"><strong>{selectedBlog.title}</strong></h2>
                 </div>
               </div>
-              
               
               <p className="flex mt-4 mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedBlog.subject}</p>
               <div
@@ -133,7 +134,6 @@ export default function BlogCompo() {
                 </div>
                 )}
               </div>
-              
               
               <motion.button
                 onClick={handleClosePopup}
