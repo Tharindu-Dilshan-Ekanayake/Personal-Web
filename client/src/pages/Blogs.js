@@ -10,7 +10,7 @@ export default function Blogs() {
         <div className='bg-white bg-opacity-50'>
             <NavBar/>
         </div>
-      <div>
+      <div className='h-[840px] overflow-y-auto'>
         <BlogCompo/>
       </div>
     </div>

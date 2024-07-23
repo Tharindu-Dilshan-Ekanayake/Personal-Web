@@ -6,26 +6,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
 import { IoClose } from "react-icons/io5";
 import { GoNorthStar } from "react-icons/go";
-import BGBLOG from '../images/BGBLOG.jpg';
+import BGPROJECT from '../images/BGBLOG.jpg';
 
-export default function BlogCompo() {
-  const [blogs, setBlogs] = useState([]);
-  const [selectedBlog, setSelectedBlog] = useState(null);
+export default function ProjectCompo() {
+  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [enlargedImage, setEnlargedImage] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const getBlogs = async () => {
+  const getProjects = async () => {
     try {
-      const response = await axios.get('/blog/getblogs');
-      setBlogs(response.data);
+      const response = await axios.get('/projects/projects');
+      setProjects(response.data);
     } catch (error) {
-      console.error('Error fetching blogs:', error);
-      toast.error('Failed to fetch blogs');
+      console.error('Error fetching projects:', error);
+      toast.error('Failed to fetch projects');
     }
   };
 
   useEffect(() => {
-    getBlogs();
+    getProjects();
   }, []);
 
   const createMarkup = (content) => {
@@ -33,12 +33,12 @@ export default function BlogCompo() {
     return { __html: sanitizedContent };
   };
 
-  const handleViewBlog = (blog) => {
-    setSelectedBlog(blog);
+  const handleViewProject = (project) => {
+    setSelectedProject(project);
   };
 
   const handleClosePopup = () => {
-    setSelectedBlog(null);
+    setSelectedProject(null);
   };
 
   const handleEnlargeImage = (image) => {
@@ -49,16 +49,16 @@ export default function BlogCompo() {
     setEnlargedImage(null);
   };
 
-  const filteredBlogs = blogs.filter((blog) => 
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    blog.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    blog.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProjects = projects.filter((project) => 
+    project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    project.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    project.subject.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="container px-4 py-6 mx-auto">
       <div>
-        <h1 className="mb-1 text-4xl font-extrabold text-center">Blogs</h1>
+        <h1 className="mb-1 text-4xl font-extrabold text-center">Projects</h1>
       </div>
       <div className="flex justify-center pt-1 pb-10">
         <input
@@ -72,33 +72,33 @@ export default function BlogCompo() {
       
       <hr className="mb-6" />
       <div className=''>
-      {blogs.length === 0 ? (
+      {projects.length === 0 ? (
         <p className="text-center text-gray-500">Loading....</p>
-      ) : filteredBlogs.length === 0 ? (
-        <p className="text-center text-gray-500">No blogs found matching your search.</p>
+      ) : filteredProjects.length === 0 ? (
+        <p className="text-center text-gray-500">No projects found matching your search.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredBlogs.map((blog) => (
+          {filteredProjects.map((project) => (
             <motion.article
-              key={blog._id}
+              key={project._id}
               className="overflow-hidden border-orange-500 rounded-lg shadow-md bg-[#19191a31] border-[1.5px] transition-all duration-300"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
               whileTap={{ scale: 0.95 }}
             >
-              {blog.images && blog.images.length > 0 && (
+              {project.images && project.images.length > 0 && (
                 <img
-                  src={blog.images[0]}
-                  alt={blog.title}
+                  src={project.images[0]}
+                  alt={project.title}
                   className="object-cover w-full h-48 cursor-pointer"
-                  onClick={() => handleEnlargeImage(blog.images[0])}
+                  onClick={() => handleEnlargeImage(project.images[0])}
                 />
               )}
               <div className="p-4">
-                <h2 className="mb-2 text-xl font-bold">{blog.title}</h2>
-                <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {blog.category}</p>
-                <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {blog.subject}</p>
+                <h2 className="mb-2 text-xl font-bold">{project.title}</h2>
+                <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {project.category}</p>
+                <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {project.subject}</p>
                 <motion.button
-                  onClick={() => handleViewBlog(blog)}
+                  onClick={() => handleViewProject(project)}
                   className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -112,9 +112,8 @@ export default function BlogCompo() {
       )}
       </div>
       
-
       <AnimatePresence>
-        {selectedBlog && (
+        {selectedProject && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -127,30 +126,47 @@ export default function BlogCompo() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="relative p-6 mx-4 overflow-y-auto bg-white rounded-lg shadow-xl w-[1300px] max-h-[90vh] bg-cover bg-center"
-              style={{ backgroundImage: `url(${BGBLOG})`, opacity:12 }}
+              style={{ backgroundImage: `url(${BGPROJECT})`, opacity:12 }}
             >
               <div className='flex justify-center'>
                 <div className='flex px-12 mx-12 '>
-                  <h2 className="mb-4 text-3xl font-bold text-[#19191A]"><strong>{selectedBlog.title}</strong></h2>
+                  <h2 className="mb-4 text-3xl font-bold text-[#19191A]"><strong>{selectedProject.title}</strong></h2>
                 </div>
               </div>
               
-              <p className="flex mt-4 mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedBlog.subject}</p>
+              <p className="flex mt-4 mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedProject.subject}</p>
               <div
-                className="mb-4 prose text-justify text-[#19191a] lg:prose-xl max-w-none blog-content"
-                dangerouslySetInnerHTML={createMarkup(selectedBlog.description)}
+                className="mb-4 prose text-justify text-[#19191a] lg:prose-xl max-w-none project-content"
+                dangerouslySetInnerHTML={createMarkup(selectedProject.description)}
               />
-              <div>
-                <p>{selectedBlog.link}</p>
+              <div className="mb-4">
+                <p><strong>Category:</strong> {selectedProject.category}</p>
+                <p><strong>Status:</strong> {selectedProject.ongoing ? 'Ongoing' : 'Completed'}</p>
+                <p><strong>Start Date:</strong> {new Date(selectedProject.start_date).toLocaleDateString()}</p>
+                {!selectedProject.ongoing && selectedProject.end_date && (
+                  <p><strong>End Date:</strong> {new Date(selectedProject.end_date).toLocaleDateString()}</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <h3 className="text-lg font-bold">Links:</h3>
+                <ul>
+                  {selectedProject.links.map((link, index) => (
+                    <li key={index}>
+                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
               <div className='flex items-center justify-center '>
-                {selectedBlog.images && selectedBlog.images.length > 0 && (
+                {selectedProject.images && selectedProject.images.length > 0 && (
                 <div className="flex mb-4 space-x-2 overflow-y-auto">
-                  {selectedBlog.images.map((image, index) => (
+                  {selectedProject.images.map((image, index) => (
                     <img
                       key={index}
                       src={image}
-                      alt={`${selectedBlog.title} - ${index + 1}`}
+                      alt={`${selectedProject.title} - ${index + 1}`}
                       className="object-cover w-32 h-32 cursor-pointer"
                       onClick={() => handleEnlargeImage(image)}
                     />
@@ -201,7 +217,6 @@ export default function BlogCompo() {
                 <IoClose />
               </motion.button>
               </div>
-              
             </motion.div>
           </motion.div>
         )}
