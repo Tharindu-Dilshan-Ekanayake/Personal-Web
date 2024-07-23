@@ -55,6 +55,17 @@ export default function ProjectCompo() {
     project.subject.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const formatLink = (link) => {
+    // Remove any localhost prefix if present
+    const formattedLink = link.replace(/^https?:\/\/localhost:\d+\//, '');
+    
+    // Ensure the link starts with http:// or https://
+    if (!formattedLink.startsWith('http://') && !formattedLink.startsWith('https://')) {
+      return `https://${formattedLink}`;
+    }
+    return formattedLink;
+  };
+
   return (
     <div className="container px-4 py-6 mx-auto">
       <div>
@@ -152,7 +163,7 @@ export default function ProjectCompo() {
                 <ul>
                   {selectedProject.links.map((link, index) => (
                     <li key={index}>
-                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">
+                      <a href={formatLink(link.url)} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">
                         {link.name}
                       </a>
                     </li>
