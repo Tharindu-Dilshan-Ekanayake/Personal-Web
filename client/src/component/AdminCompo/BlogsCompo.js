@@ -16,6 +16,7 @@ export default function BlogsCompo() {
     images: [],
   });
   const [editingId, setEditingId] = useState(null);
+  const [viewingBlog, setViewingBlog] = useState(null);
 
   const categories = ['Technology', 'Lifestyle', 'Travel', 'Food'];
 
@@ -103,6 +104,14 @@ export default function BlogsCompo() {
       ...prevData,
       description: content,
     }));
+  };
+
+  const handleView = (blog) => {
+    setViewingBlog(blog);
+  };
+
+  const closeViewPopup = () => {
+    setViewingBlog(null);
   };
 
   const modules = {
@@ -226,38 +235,63 @@ export default function BlogsCompo() {
       </form>
 
       <h2 className="mb-4 text-2xl font-bold text-center text-blue-600">Existing Blogs</h2>
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {blogs.map((blog) => (
-          <div key={blog._id} className="p-4 bg-white rounded-lg shadow">
-            <h3 className="mb-2 text-xl font-semibold">{blog.title}</h3>
-            <p className="mb-2 text-gray-600">{blog.subject}</p>
-            <p className="mb-2 text-sm text-gray-500">Category: {blog.category}</p>
-            <div className="flex flex-wrap mb-2">
-              {blog.images.map((image, index) => (
-                <img key={index} src={image} alt={`blog-${index}`} className="object-cover w-20 h-20 m-1 rounded" />
-              ))}
-            </div>
-            <div className="mb-2" dangerouslySetInnerHTML={createMarkup(blog.description)} />
-            <a href={blog.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-              Read more
-            </a>
-            <div className="flex mt-2 space-x-2">
-              <button
-                onClick={() => handleEdit(blog)}
-                className="px-3 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(blog._id)}
-                className="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600"
-              >
-                Delete
-              </button>
+          <div key={blog._id} className="overflow-hidden bg-white rounded-lg shadow">
+            {blog.images.length > 0 && (
+              <img src={blog.images[0]} alt={blog.title} className="object-cover w-full h-48" />
+            )}
+            <div className="p-4">
+              <h3 className="mb-2 text-xl font-semibold truncate">{blog.title}</h3>
+              <div className="flex justify-between mt-2">
+                <button
+                  onClick={() => handleView(blog)}
+                  className="px-3 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-600"
+                >
+                  View
+                </button>
+                <button
+                  onClick={() => handleEdit(blog)}
+                  className="px-3 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(blog._id)}
+                  className="px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
+      {viewingBlog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="p-6 mx-4 bg-white rounded-lg shadow-xl max-w-3xl max-h-[90vh] overflow-y-auto">
+            <h2 className="mb-4 text-2xl font-bold">{viewingBlog.title}</h2>
+            <p className="mb-2 text-gray-600">{viewingBlog.subject}</p>
+            <p className="mb-2 text-sm text-gray-500">Category: {viewingBlog.category}</p>
+            <div className="flex flex-wrap mb-4">
+              {viewingBlog.images.map((image, index) => (
+                <img key={index} src={image} alt={`blog-${index}`} className="object-cover w-32 h-32 m-1 rounded" />
+              ))}
+            </div>
+            <div className="mb-4 prose max-w-none" dangerouslySetInnerHTML={createMarkup(viewingBlog.description)} />
+            <a href={viewingBlog.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              Read more
+            </a>
+            <button
+              onClick={closeViewPopup}
+              className="block w-full px-4 py-2 mt-4 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
