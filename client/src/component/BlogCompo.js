@@ -2,7 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import DOMPurify from 'dompurify';
+import { motion, AnimatePresence } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
+import { IoClose } from "react-icons/io5";
+import { GoNorthStar } from "react-icons/go";
 
 export default function BlogCompo() {
   const [blogs, setBlogs] = useState([]);
@@ -45,15 +48,23 @@ export default function BlogCompo() {
   };
 
   return (
-    <div className="container px-4 py-6 mx-auto ">
-      <h1 className="mb-8 text-4xl font-extrabold text-center">Blogs</h1>
-      <hr></hr>
+    <div className="container px-4 py-6 mx-auto">
+      <div>
+        <h1 className="mb-8 text-4xl font-extrabold text-center">Blogs</h1>
+      </div>
+      
+      <hr className="mb-6" />
       {blogs.length === 0 ? (
         <p className="text-center text-gray-500">No blogs found.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
-            <article key={blog._id} className="overflow-hidden border-orange-500 rounded-lg shadow-md bg-[#19191a31] border-[1.5px]">
+            <motion.article
+              key={blog._id}
+              className="overflow-hidden border-orange-500 rounded-lg shadow-md bg-[#19191a31] border-[1.5px] transition-all duration-300"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
+              whileTap={{ scale: 0.95 }}
+            >
               {blog.images && blog.images.length > 0 && (
                 <img
                   src={blog.images[0]}
@@ -62,72 +73,115 @@ export default function BlogCompo() {
                   onClick={() => handleEnlargeImage(blog.images[0])}
                 />
               )}
-              <div className="p-4 ">
+              <div className="p-4">
                 <h2 className="mb-2 text-xl font-bold">{blog.title}</h2>
                 <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {blog.category}</p>
                 <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {blog.subject}</p>
-                <button
+                <motion.button
                   onClick={() => handleViewBlog(blog)}
                   className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   View Details
-                </button>
+                </motion.button>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       )}
 
-      {selectedBlog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="p-6 mx-4 overflow-y-auto bg-white rounded-lg shadow-xl max-w-3xl max-h-[90vh]">
-            <h2 className="mb-4 text-3xl font-bold">{selectedBlog.title}</h2>
-            <p className="mb-2 text-lg text-gray-600"><strong>Category:</strong> {selectedBlog.category}</p>
-            <p className="mb-4 text-lg text-gray-800"><strong>Subject:</strong> {selectedBlog.subject}</p>
-            {selectedBlog.images && selectedBlog.images.length > 0 && (
-              <div className="flex mb-4 space-x-2 overflow-x-auto">
-                {selectedBlog.images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`${selectedBlog.title} - ${index + 1}`}
-                    className="object-cover w-32 h-32 cursor-pointer"
-                    onClick={() => handleEnlargeImage(image)}
-                  />
-                ))}
+      <AnimatePresence>
+        {selectedBlog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center"
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" onClick={handleClosePopup} />
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative p-6 mx-4 overflow-y-auto bg-white rounded-lg shadow-xl w-[1300px] max-h-[90vh]"
+            >
+              <div className='flex justify-center'>
+                <div className='flex px-12 mx-12 border-b'>
+                  <h2 className="mb-4 text-3xl font-bold text-[#19191A]"><strong>{selectedBlog.title}</strong></h2>
+                </div>
               </div>
-            )}
-            <div
-              className="mb-4 prose text-justify lg:prose-xl max-w-none blog-content"
-              dangerouslySetInnerHTML={createMarkup(selectedBlog.description)}
-            />
-            <button
-              onClick={handleClosePopup}
-              className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+              
+              
+              <p className="flex mt-4 mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedBlog.subject}</p>
+              <div
+                className="mb-4 prose text-justify text-[#19191a] lg:prose-xl max-w-none blog-content"
+                dangerouslySetInnerHTML={createMarkup(selectedBlog.description)}
+              />
+              <div className='flex items-center justify-center '>
+                {selectedBlog.images && selectedBlog.images.length > 0 && (
+                <div className="flex mb-4 space-x-2 overflow-y-auto">
+                  {selectedBlog.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`${selectedBlog.title} - ${index + 1}`}
+                      className="object-cover w-32 h-32 cursor-pointer"
+                      onClick={() => handleEnlargeImage(image)}
+                    />
+                  ))}
+                </div>
+                )}
+              </div>
+              
+              
+              <motion.button
+                onClick={handleClosePopup}
+                className="fixed z-50 p-2 text-white bg-red-500 rounded-full top-4 right-4 hover:bg-red-600"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <IoClose />
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {enlargedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
-          <div className="relative">
-            <img
-              src={enlargedImage}
-              alt="Enlarged view"
-              className="max-w-full max-h-[90vh] object-contain"
-            />
-            <button
-              onClick={handleCloseEnlargedImage}
-              className="absolute top-0 right-0 px-2 py-1 m-2 text-white bg-red-500 rounded hover:bg-red-600"
+      <AnimatePresence>
+        {enlargedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative"
             >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+              <img
+                src={enlargedImage}
+                alt="Enlarged view"
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+              <div >
+                <motion.button
+                onClick={handleCloseEnlargedImage}
+                className="fixed z-50 p-2 text-white bg-red-500 rounded-full top-4 right-4 hover:bg-red-600"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <IoClose />
+              </motion.button>
+              </div>
+              
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
