@@ -56,7 +56,7 @@ export default function BlogCompo() {
       
       <hr className="mb-6" />
       {blogs.length === 0 ? (
-        <p className="text-center text-gray-500">No blogs found.</p>
+        <p className="text-center text-gray-500">Loading....</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
