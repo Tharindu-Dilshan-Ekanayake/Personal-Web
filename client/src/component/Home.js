@@ -71,7 +71,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 3 }}
+
+              
             >
+              <motion.p
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="mb-6 text-xl text-gray-700"
+            >
+              Full-Stack Developer | UI/UX Designer | Mobile & Desktop App Developer | Graphic Designer & Video Editor | Youtuber
+            </motion.p>
+            
               <motion.button 
                 className='h-12 text-2xl bg-[#f78c0f] w-[200px] rounded-lg text-white hover:bg-gray-700'
                 whileHover={{ scale: 1.05 }}
@@ -87,20 +98,31 @@ export default function Home() {
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.5, delay: 3.2 }}
           >
+
+            
             <hr className='h-[1px] bg-black border-0 bg-opacity-20'></hr>
           </motion.div>
+          
           <motion.div 
-            className='flex w-[500px] justify-between px-[120px] pt-12'
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 3.4 }}
-          >
-            {[FaLinkedin, FaGithubSquare, FaYoutube, FaInstagramSquare, FaFacebookSquare].map((Icon, index) => (
-              <motion.div key={index} whileHover={{ scale: 1.2 }}>
-                <Icon className='size-[40px] opacity-55' />
-              </motion.div>
-            ))}
-          </motion.div>
+  className='flex w-[500px] justify-between px-[120px] pt-12'
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 3.4 }}
+>
+  {[
+    { Icon: FaLinkedin, url: 'https://www.linkedin.com/in/tharindu-dilshan-ekanayake-462919195' },
+    { Icon: FaGithubSquare, url: 'https://github.com/Tharindu-Dilshan-Ekanayake' },
+    { Icon: FaYoutube, url: 'https://www.youtube.com/channel/UCZxX8vsED7Rv9SGbdv34RzA' },
+    { Icon: FaInstagramSquare, url: 'https://www.instagram.com/tharindu_dilshan_ekanayake_/' },
+    { Icon: FaFacebookSquare, url: 'https://web.facebook.com/tharindu.dilshan.3154' }
+  ].map(({ Icon, url }, index) => (
+    <motion.div key={index} whileHover={{ scale: 1.2 }}>
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <Icon className='size-[40px] opacity-55' />
+      </a>
+    </motion.div>
+  ))}
+</motion.div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../component/NavBar'
 import BlogCompo from '../component/BlogCompo'
-import BGG from '../images/BGG.jpg'
+import BGG from '../images/BGGICON.jpg'
 
 
 export default function Blogs() {
