@@ -1,14 +1,18 @@
 import React from 'react'
 import NavBar from '../component/NavBar'
+import PortfolioCompo from '../component/PortfolioCompo'
+import BGPORT from '../images/BGPP.jpg'
 
 
 export default function Portfolio() {
   return (
-    <div>
+    <div className="min-h-screen bg-right bg-cover no-repeat bg- lg-h-screen" style={{ backgroundImage: `url(${BGPORT})` }}>
         <div>
             <NavBar/>
         </div>
-      <h1>Port</h1>
+      <div>
+        <PortfolioCompo/>
+      </div>
     </div>
   )
 }

@@ -46,6 +46,17 @@ export default function VlogCompo() {
     vlog.subject.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const formatLink = (link) => {
+    // Remove any localhost prefix if present
+    const formattedLink = link.replace(/^https?:\/\/localhost:\d+\//, '');
+    
+    // Ensure the link starts with http:// or https://
+    if (!formattedLink.startsWith('http://') && !formattedLink.startsWith('https://')) {
+      return `https://${formattedLink}`;
+    }
+    return formattedLink;
+  };
+
   return (
     <div className="container px-4 py-6 mx-auto">
       <div>
@@ -134,7 +145,12 @@ export default function VlogCompo() {
               </div>
               <div className="mb-4">
                 <h3 className="text-lg font-bold">Vlog Link:</h3>
-                <a href={selectedVlog.link} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline">
+                <a 
+                  href={formatLink(selectedVlog.link)} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-orange-500 hover:underline"
+                >
                   Watch Vlog
                 </a>
               </div>
