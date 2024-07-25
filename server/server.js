@@ -29,6 +29,7 @@ app.use('/', require('./routes/adminLoginRoutes'));
 app.use('/vlog', require('./routes/vlogsRoutes'));
 app.use('/blog',require('./routes/blogsRoutes'));
 app.use('/projects', require('./routes/projectRoutes'));
+app.use('/hiring',require('./routes/hiringRoutes'));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
