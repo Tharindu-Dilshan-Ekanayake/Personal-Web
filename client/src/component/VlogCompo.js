@@ -12,6 +12,7 @@ export default function VlogCompo() {
   const [vlogs, setVlogs] = useState([]);
   const [selectedVlog, setSelectedVlog] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
   const getVlogs = async () => {
     try {
@@ -40,6 +41,14 @@ export default function VlogCompo() {
     setSelectedVlog(null);
   };
 
+  const handleEnlargeImage = (image) => {
+    setEnlargedImage(image);
+  };
+
+  const handleCloseEnlargedImage = () => {
+    setEnlargedImage(null);
+  };
+
   const filteredVlogs = vlogs.filter((vlog) => 
     vlog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     vlog.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -47,10 +56,8 @@ export default function VlogCompo() {
   );
 
   const formatLink = (link) => {
-    // Remove any localhost prefix if present
     const formattedLink = link.replace(/^https?:\/\/localhost:\d+\//, '');
     
-    // Ensure the link starts with http:// or https://
     if (!formattedLink.startsWith('http://') && !formattedLink.startsWith('https://')) {
       return `https://${formattedLink}`;
     }
@@ -91,7 +98,8 @@ export default function VlogCompo() {
                 <img
                   src={vlog.cover_image}
                   alt={vlog.title}
-                  className="object-cover w-full h-48"
+                  className="object-cover w-full h-48 cursor-pointer"
+                  onClick={() => handleEnlargeImage(vlog.cover_image)}
                 />
               )}
               <div className="p-4">
@@ -159,13 +167,46 @@ export default function VlogCompo() {
                   <img
                     src={selectedVlog.cover_image}
                     alt={selectedVlog.title}
-                    className="object-cover w-full max-w-md h-72"
+                    className="object-cover w-full max-w-md cursor-pointer h-72"
+                    onClick={() => handleEnlargeImage(selectedVlog.cover_image)}
                   />
                 </div>
               )}
               
               <motion.button
                 onClick={handleClosePopup}
+                className="fixed z-50 p-2 text-white bg-red-500 rounded-full top-4 right-4 hover:bg-red-600"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <IoClose />
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {enlargedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative"
+            >
+              <img
+                src={enlargedImage}
+                alt="Enlarged view"
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+              <motion.button
+                onClick={handleCloseEnlargedImage}
                 className="fixed z-50 p-2 text-white bg-red-500 rounded-full top-4 right-4 hover:bg-red-600"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

@@ -89,7 +89,7 @@ export default function ProjectCompo() {
         <p className="text-center text-gray-500">No projects found matching your search.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
+          {filteredProjects.reverse().map((project) => (
             <motion.article
               key={project._id}
               className="overflow-hidden border-orange-500 rounded-lg shadow-md bg-[#19191a31] border-[1.5px] transition-all duration-300"
@@ -108,6 +108,7 @@ export default function ProjectCompo() {
                 <h2 className="mb-2 text-xl font-bold">{project.title}</h2>
                 <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {project.category}</p>
                 <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {project.subject}</p>
+                <p><strong>Created:</strong> {new Date(project.createdAt).toLocaleString()}</p>
                 <motion.button
                   onClick={() => handleViewProject(project)}
                   className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"

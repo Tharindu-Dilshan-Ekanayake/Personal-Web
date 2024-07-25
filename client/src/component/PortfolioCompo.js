@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import DP from '../images/ME.png';
+import toast from 'react-hot-toast';
 
 export default function PortfolioComponent() {
+  const handleDownloadCV = () => {
+    toast.error('Admin is temporarily blocked');
+  };
+
   return (
     <div className="flex items-center justify-center bg-transparent h-[700px]">
       <motion.div
@@ -23,7 +28,7 @@ export default function PortfolioComponent() {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 border-4 border-orange-500 rounded-full"
-                style={{ 
+                style={{
                   clipPath: "polygon(0 0, 100% 0, 100% 100%, 75% 100%, 75% 25%, 0 25%)"
                 }}
               />
@@ -57,6 +62,7 @@ export default function PortfolioComponent() {
               Full-Stack Developer | UI/UX Designer | Mobile & Desktop App Developer | Graphic Designer & Video Editor | Youtuber
             </motion.p>
             <motion.button
+              onClick={handleDownloadCV}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 font-bold text-white transition duration-300 ease-in-out bg-orange-500 rounded-full shadow-md hover:bg-orange-600 hover:shadow-lg"
