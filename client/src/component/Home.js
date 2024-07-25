@@ -104,17 +104,25 @@ export default function Home() {
           </motion.div>
           
           <motion.div 
-            className='flex w-[500px] justify-between px-[120px] pt-12'
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 3.4 }}
-          >
-            {[FaLinkedin, FaGithubSquare, FaYoutube, FaInstagramSquare, FaFacebookSquare].map((Icon, index) => (
-              <motion.div key={index} whileHover={{ scale: 1.2 }}>
-                <Icon className='size-[40px] opacity-55' />
-              </motion.div>
-            ))}
-          </motion.div>
+  className='flex w-[500px] justify-between px-[120px] pt-12'
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 3.4 }}
+>
+  {[
+    { Icon: FaLinkedin, url: 'https://www.linkedin.com/in/tharindu-dilshan-ekanayake-462919195' },
+    { Icon: FaGithubSquare, url: 'https://github.com/Tharindu-Dilshan-Ekanayake' },
+    { Icon: FaYoutube, url: 'https://www.youtube.com/channel/UCZxX8vsED7Rv9SGbdv34RzA' },
+    { Icon: FaInstagramSquare, url: 'https://www.instagram.com/tharindu_dilshan_ekanayake_/' },
+    { Icon: FaFacebookSquare, url: 'https://web.facebook.com/tharindu.dilshan.3154' }
+  ].map(({ Icon, url }, index) => (
+    <motion.div key={index} whileHover={{ scale: 1.2 }}>
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <Icon className='size-[40px] opacity-55' />
+      </a>
+    </motion.div>
+  ))}
+</motion.div>
         </div>
       </div>
     </div>

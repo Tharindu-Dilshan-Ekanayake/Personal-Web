@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from '../component/NavBar'
-import BGG from '../images/BGG.jpg'
+import BGG from '../images/BGGICON.jpg'
 import VlogCompo from '../component/VlogCompo'
 
 export default function Vlogs() {

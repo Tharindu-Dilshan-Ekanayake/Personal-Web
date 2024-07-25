@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from '../component/NavBar'
-import BGG from '../images/BGPP.jpg'
+import BGG from '../images/BGGICON.jpg'
 import ProjectCompo from '../component/ProjectCompo'
 
 export default function Projects() {
