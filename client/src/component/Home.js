@@ -71,7 +71,18 @@ export default function Home() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 3 }}
+
+              
             >
+              <motion.p
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="mb-6 text-xl text-gray-700"
+            >
+              Full-Stack Developer | UI/UX Designer | Mobile & Desktop App Developer | Graphic Designer & Video Editor | Youtuber
+            </motion.p>
+            
               <motion.button 
                 className='h-12 text-2xl bg-[#f78c0f] w-[200px] rounded-lg text-white hover:bg-gray-700'
                 whileHover={{ scale: 1.05 }}
@@ -87,8 +98,11 @@ export default function Home() {
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.5, delay: 3.2 }}
           >
+
+            
             <hr className='h-[1px] bg-black border-0 bg-opacity-20'></hr>
           </motion.div>
+          
           <motion.div 
             className='flex w-[500px] justify-between px-[120px] pt-12'
             initial={{ opacity: 0, y: 50 }}
