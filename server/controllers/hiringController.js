@@ -64,10 +64,29 @@ const deletemessage = async(req, res) => {
     }
 }
 
+// New function to set read status to true
+const setMessageAsRead = async(req, res) => {
+    try {
+        const updatedMessage = await Hiring.findByIdAndUpdate(
+            req.params.id,
+            { read: true },
+            { new: true }
+        );
+        
+        if(!updatedMessage){
+            return res.status(404).json({ error: 'Message not found' });
+        }
+        res.status(200).json({ message: 'Message marked as read', hiring: updatedMessage });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update message' });
+    }
+}
+
 module.exports = {
     postmessage,
     getallmessage,
     getreadmessage,
     getunreadmessage,
-    deletemessage
+    deletemessage,
+    setMessageAsRead
 }

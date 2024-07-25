@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
-const { postmessage, getallmessage, getreadmessage, getunreadmessage, deletemessage } = require('../controllers/hiringController')
+const { postmessage, getallmessage, getreadmessage, getunreadmessage, deletemessage, setMessageAsRead } = require('../controllers/hiringController')
 
 router.use(
     cors({
@@ -16,5 +16,7 @@ router.get('/getreadmessage', getreadmessage);
 router.get('/getunreadmessage', getunreadmessage);
 
 router.delete('/deletemessage/:id', deletemessage)
+
+router.put('/putread/:id', setMessageAsRead)
 
 module.exports = router;
