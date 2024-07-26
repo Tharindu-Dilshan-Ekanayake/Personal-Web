@@ -12,6 +12,7 @@ import { FaVideo } from "react-icons/fa6";
 import { GiSkills } from "react-icons/gi";
 import { FaNetworkWired } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
+import Logout from './Logout';
 
 export default function AdminNav() {
     const [activeItem, setActiveItem] = useState(null);
@@ -139,6 +140,7 @@ export default function AdminNav() {
                     </div>
                 </nav>
             </div>
+            <Logout/>
         </div>
     );
 }
