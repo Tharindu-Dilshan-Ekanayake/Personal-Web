@@ -81,7 +81,7 @@ export default function ProjectCompo() {
         />
       </div>
       
-      <hr className="mb-6" />
+      
       <div className=''>
       {projects.length === 0 ? (
         <p className="text-center text-gray-500">Loading....</p>
@@ -105,10 +105,11 @@ export default function ProjectCompo() {
                 />
               )}
               <div className="p-4">
-                <h2 className="mb-2 text-xl font-bold">{project.title}</h2>
-                <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {project.category}</p>
-                <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {project.subject}</p>
-                <p><strong>Created:</strong> {new Date(project.createdAt).toLocaleString()}</p>
+                <h2 className="mb-1 text-xl font-bold text-orange-900">{project.title}</h2>
+                <p className="mb-2 text-sm text-gray-600"> {project.category}</p>
+                <p className="mb-2 text-[#19191A] border-b border-orange-400"><strong> {project.subject}</strong></p>
+                
+                <p className="mb-3 text-orange-800"> {new Date(project.createdAt).toLocaleString()}</p>
                 <motion.button
                   onClick={() => handleViewProject(project)}
                   className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
@@ -142,17 +143,21 @@ export default function ProjectCompo() {
             >
               <div className='flex justify-center'>
                 <div className='flex px-12 mx-12 '>
-                  <h2 className="mb-4 text-3xl font-bold text-[#19191A]"><strong>{selectedProject.title}</strong></h2>
+                  <h2 className="mb-1 text-3xl font-bold text-[#19191A]"><strong>{selectedProject.title}</strong></h2>
+                  
                 </div>
+                
               </div>
-              
+                <div>
+                  <p className='mb-4'> {selectedProject.category}</p>
+                </div>
               <p className="flex mt-4 mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedProject.subject}</p>
               <div
                 className="mb-4 prose text-justify text-[#19191a] lg:prose-xl max-w-none project-content"
                 dangerouslySetInnerHTML={createMarkup(selectedProject.description)}
               />
               <div className="mb-4">
-                <p><strong>Category:</strong> {selectedProject.category}</p>
+                
                 <p><strong>Status:</strong> {selectedProject.ongoing ? 'Ongoing' : 'Completed'}</p>
                 <p><strong>Start Date:</strong> {new Date(selectedProject.start_date).toLocaleDateString()}</p>
                 {!selectedProject.ongoing && selectedProject.end_date && (

@@ -30,7 +30,7 @@ export default function ProjectCompo() {
     }
   };
 
-  const categories = ['Web Development', 'Mobile App', 'UI/UX Design', 'Graphic Design', '3D animation'];
+  const categories = ['Web Development', 'Mobile App','Desktop App', 'UI/UX Design', 'Graphic Design', '3D animation'];
 
   useEffect(() => {
     fetchProjects();

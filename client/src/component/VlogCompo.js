@@ -79,7 +79,7 @@ export default function VlogCompo() {
         />
       </div>
       
-      <hr className="mb-6" />
+      
       <div className=''>
       {vlogs.length === 0 ? (
         <p className="text-center text-gray-500">Loading....</p>
@@ -87,7 +87,7 @@ export default function VlogCompo() {
         <p className="text-center text-gray-500">No vlogs found matching your search.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredVlogs.map((vlog) => (
+          {filteredVlogs.reverse().map((vlog) => (
             <motion.article
               key={vlog._id}
               className="overflow-hidden border-orange-500 rounded-lg shadow-md bg-[#19191a31] border-[1.5px] transition-all duration-300"
@@ -103,9 +103,10 @@ export default function VlogCompo() {
                 />
               )}
               <div className="p-4">
-                <h2 className="mb-2 text-xl font-bold">{vlog.title}</h2>
-                <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {vlog.category}</p>
-                <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {vlog.subject}</p>
+                <h2 className="mb-1 text-xl font-bold text-orange-900">{vlog.title}</h2>
+                <p className="mb-2 text-sm text-gray-600"> {vlog.category}</p>
+                <p className="mb-2 text-[#19191A] border-b border-orange-400"><strong>{vlog.subject}</strong> </p>
+                <p className="mb-3 text-orange-800"> {new Date(vlog.createdAt).toLocaleString()}</p>
                 <motion.button
                   onClick={() => handleViewVlog(vlog)}
                   className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
@@ -139,18 +140,25 @@ export default function VlogCompo() {
             >
               <div className='flex justify-center'>
                 <div className='flex px-12 mx-12 '>
-                  <h2 className="mb-4 text-3xl font-bold text-[#19191A]"><strong>{selectedVlog.title}</strong></h2>
+                  <h2 className="mb-1 text-3xl font-bold text-[#19191A]"><strong>{selectedVlog.title}</strong></h2>
                 </div>
               </div>
-              
-              <p className="flex mt-4 mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedVlog.subject}</p>
+              <div className="mb-4">
+                <p> {selectedVlog.category}</p>
+              </div>
+              <div className='flex justify-center ' >
+                <div>
+                  <p className="flex mb-4 text-xl text-orange-500"><GoNorthStar /> {selectedVlog.subject}</p>
               <div
-                className="mb-4 prose text-justify text-[#19191a] lg:prose-xl max-w-none vlog-content"
+                className="mb-4  text-[#19191a]  vlog-content"
                 dangerouslySetInnerHTML={createMarkup(selectedVlog.description)}
               />
-              <div className="mb-4">
-                <p><strong>Category:</strong> {selectedVlog.category}</p>
+              
+                </div>
+                
               </div>
+               
+              
               <div className="mb-4">
                 <h3 className="text-lg font-bold">Vlog Link:</h3>
                 <a 

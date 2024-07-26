@@ -67,30 +67,30 @@ const HireMeForm = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-[400px]">
-        <h2 className="mb-4 text-2xl">Hire Me</h2>
+      <div className="bg-[#19191A] p-8 rounded-lg shadow-lg w-[400px] border-orange-500 border-[1.5px] bg-opacity-75">
+        <h2 className="mb-4 text-2xl text-orange-500">Hire Me</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block mb-2">Name</label>
+          <div className="mb-4 ">
+            <label className="block mb-2 text-white">Name</label>
             <input type="text" name="name_user" value={formData.name_user} onChange={handleChange} className="w-full p-2 border rounded" required />
           </div>
           <div className="mb-4">
-            <label className="block mb-2">Email</label>
+            <label className="block mb-2 text-white">Email</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded" required />
           </div>
           <div className="mb-4">
-            <label className="block mb-2">Mobile</label>
+            <label className="block mb-2 text-white">Mobile</label>
             <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} className="w-full p-2 border rounded" required />
           </div>
           <div className="mb-4">
-            <label className="block mb-2">Message</label>
+            <label className="block mb-2 text-white">Message</label>
             <textarea name="message" value={formData.message} onChange={handleChange} className="w-full p-2 border rounded" rows="4" required></textarea>
           </div>
           <div className="flex justify-end">
-            <button type="button" className="px-4 py-2 mr-4 bg-gray-300 rounded" onClick={onClose}>
+            <button type="button" className="px-4 py-2 mr-4 bg-gray-300 rounded hover:bg-gray-600" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="px-4 py-2 text-white bg-blue-500 rounded">
+            <button type="submit" className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-gray-600">
               Submit
             </button>
           </div>

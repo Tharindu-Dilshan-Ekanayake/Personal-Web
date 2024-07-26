@@ -55,6 +55,15 @@ export default function BlogCompo() {
     blog.subject.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const formatLink = (link) => {
+    const formattedLink = link.replace(/^https?:\/\/localhost:\d+\//, '');
+    
+    if (!formattedLink.startsWith('http://') && !formattedLink.startsWith('https://')) {
+      return `https://${formattedLink}`;
+    }
+    return formattedLink;
+  };
+
   return (
     <div className="container px-4 py-6 mx-auto">
       <div>
@@ -70,7 +79,7 @@ export default function BlogCompo() {
         />
       </div>
       
-      <hr className="mb-6" />
+      
       <div className=''>
       {blogs.length === 0 ? (
         <p className="text-center text-gray-500">Loading....</p>
@@ -78,7 +87,7 @@ export default function BlogCompo() {
         <p className="text-center text-gray-500">No blogs found matching your search.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredBlogs.map((blog) => (
+          {filteredBlogs.reverse().map((blog) => (
             <motion.article
               key={blog._id}
               className="overflow-hidden border-orange-500 rounded-lg shadow-md bg-[#19191a31] border-[1.5px] transition-all duration-300"
@@ -94,9 +103,10 @@ export default function BlogCompo() {
                 />
               )}
               <div className="p-4">
-                <h2 className="mb-2 text-xl font-bold">{blog.title}</h2>
-                <p className="mb-2 text-sm text-gray-600"><strong>Category:</strong> {blog.category}</p>
-                <p className="mb-4 text-sm text-gray-800"><strong>Subject:</strong> {blog.subject}</p>
+                <h2 className="mb-1 text-xl font-bold text-orange-900">{blog.title}</h2>
+                <p className="mb-2 text-sm text-gray-600"> {blog.category}</p>
+                <p className="mb-2 text-[#19191A] border-b border-orange-400"><strong>{blog.subject}</strong> </p>
+                <p className="mb-3 text-orange-800"> {new Date(blog.createdAt).toLocaleString()}</p>
                 <motion.button
                   onClick={() => handleViewBlog(blog)}
                   className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
@@ -141,7 +151,15 @@ export default function BlogCompo() {
                 dangerouslySetInnerHTML={createMarkup(selectedBlog.description)}
               />
               <div>
-                <p>{selectedBlog.link}</p>
+                <h3 className="text-lg font-bold"> Link</h3>
+                <a 
+                  href={formatLink(selectedBlog.link)} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-orange-500 hover:underline"
+                >
+                  Read me
+                </a>
               </div>
               <div className='flex items-center justify-center '>
                 {selectedBlog.images && selectedBlog.images.length > 0 && (
