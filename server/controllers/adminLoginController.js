@@ -56,7 +56,46 @@ const loginAdmin = async (req, res) => {
     }
 };
 
+// Get admin details
+const getAdmin = async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).json({ error: 'No token, authorization denied' });
+        }
+
+        jwt.verify(token, process.env.REACT_APP_JWT_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ error: 'Token is not valid' });
+            }
+
+            const user = await User.findById(decoded.id).select('-password');
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+
+            res.json(user);
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+// Logout admin
+const logoutAdmin = (req, res) => {
+    try {
+        res.clearCookie('token');
+        return res.json({ message: 'Logged out successfully' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Server error' });
+    }
+};
+
 module.exports = {
     createAdmin,
-    loginAdmin
+    loginAdmin,
+    getAdmin,
+    logoutAdmin
 };
