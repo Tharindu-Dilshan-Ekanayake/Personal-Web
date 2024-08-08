@@ -112,7 +112,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-right bg-cover no-repeat bg- lg-h-screen" style={{ backgroundImage: `url(${BG})` }}>
+    <div className="min-h-screen bg-right bg-cover no-repeat bg- lg-h-screen sm:bg-gray-200 " style={{ backgroundImage: `url(${BG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className='items-center h-screen '>
         <motion.div 
           className='absolute flex mt-12 ml-[105px]'
@@ -131,7 +131,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className='text-[150px]'>
+              <h1 className='text-[150px] '>
                 <TypewriterText text="Hello..!" />
               </h1>
             </motion.div>
