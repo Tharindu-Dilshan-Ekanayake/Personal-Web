@@ -103,15 +103,15 @@ const SkillCard = ({ category }) => {
 
 export default function SkillsCompo() {
   return (
-    <div className="px-4 py-12 pt-[200px] bg-transparent sm:px-6 lg:px-8">
+    <div className="px-4 py-12 sm:pt-[100px] md:pt-[200px] bg-transparent sm:px-6 lg:px-8">
       <div className="relative mx-auto max-w-7xl">
         <div className="pt-24 pb-12 px-8 border-[#19191A] rounded-lg backdrop-blur-sm bg-white/30">
-          <div className="absolute top-0 transform -translate-x-1/2 -translate-y-1/2 left-1/2">
+          <div className="absolute top-0 mt-4 transform -translate-x-1/2 -translate-y-1/2 left-1/2">
             <div className="relative inline-block">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 border-4 border-orange-500 rounded-full"
+                className="absolute inset-0 border-4 border-orange-500 rounded-full "
                 style={{ 
                   clipPath: "polygon(0 0, 100% 0, 100% 100%, 75% 100%, 75% 25%, 0 25%)"
                 }}
@@ -119,7 +119,7 @@ export default function SkillsCompo() {
               <img
                 src={DP}
                 alt="Profile"
-                className="object-cover w-48 h-48 rounded-full shadow-lg"
+                className="object-cover w-24 h-24 rounded-full shadow-lg sm:w-32 sm:h-32 md:w-48 md:h-48"
               />
             </div>
           </div>

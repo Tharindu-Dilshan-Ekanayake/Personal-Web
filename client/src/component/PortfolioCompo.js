@@ -9,7 +9,7 @@ export default function PortfolioComponent() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-transparent h-[700px]">
+    <div className="flex items-center justify-center bg-transparent h-[700px] mx-3">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function PortfolioComponent() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="mb-6 text-xl text-gray-700"
+              className="mb-6 text-xl text-gray-700 "
             >
               Full-Stack Developer | UI/UX Designer | Mobile & Desktop App Developer | Graphic Designer & Video Editor | Youtuber
             </motion.p>
