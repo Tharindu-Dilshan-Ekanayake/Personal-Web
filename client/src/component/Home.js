@@ -170,7 +170,7 @@ export default function Home() {
                       clipPath: "polygon(0 0, 100% 0, 100% 100%, 75% 100%, 75% 25%, 0 25%)"
                     }}
                   />
-                  <div className="relative flex justify-center border">
+                  <div className="relative flex justify-center ">
                     <img src={DP} alt='hi' className="relative w-[150px]" />
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 }}
-                  className="mb-6 text-xl text-gray-70 "
+                  className="mb-6 md:text-xl text-gray-70 sm:text-[10px] "
                 >
                   Full-Stack Developer | UI/UX Designer | Mobile & Desktop App Developer | Graphic Designer & Video Editor | Youtuber
                 </motion.p>
@@ -194,16 +194,16 @@ export default function Home() {
               </motion.div>
             </div>
             <motion.div 
-              className='w-full sm:w-[500px]'
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 3.2 }}
-            >
-              <hr className='h-[1px] bg-black border-0 bg-opacity-20 ml-[58px] sm:hidden'></hr>
-            </motion.div>
-            
+  className='w-full sm:w-[500px]  md:pl-9 sm:pl-12 hidden sm:block'
+  initial={{ opacity: 0, scaleX: 0 }}
+  animate={{ opacity: 1, scaleX: 1 }}
+  transition={{ duration: 0.5, delay: 3.2 }}
+>
+  <hr className='h-[1px] bg-black border-0 bg-opacity-20 pl-12 md:shadow-sm'></hr>
+</motion.div>
+
             <motion.div 
-              className='flex w-full sm:w-[500px] justify-between sm:px-[120px] pt-1 md:pt-12 pl-[60px]'
+              className='flex w-full sm:w-[500px] justify-between sm:px-[120px]  pt-12 pl-[60px] '
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 3.4 }}
